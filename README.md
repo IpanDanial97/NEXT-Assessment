@@ -3,7 +3,9 @@ A system that allows user to key-in datetime (UTC) and the tracker will provide 
 # Output
 Location of the ISS based on the datetime entered.
 
-![image](https://user-images.githubusercontent.com/96214490/146294844-afcc6cad-a5aa-41f2-9b90-a0aaf2eed12d.png
+![image](https://user-images.githubusercontent.com/96214490/146301825-b666e6bb-ea13-45a0-97c4-0d17680aee3e.png)
+
+
 # Instructions
 1. Run the program.
 2. Enter datetime (yyyy-mm-dd hh:mm) [UTC]. For example, 2017-02-23 11:30. Then press enter.
