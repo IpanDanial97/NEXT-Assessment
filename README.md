@@ -5,7 +5,7 @@ Location of the ISS based on the datetime entered.
 
 ![image](https://user-images.githubusercontent.com/96214490/146294844-afcc6cad-a5aa-41f2-9b90-a0aaf2eed12d.png)
 # Library
-1. Json
+1. Request
 2. urllib
 3. webbrowser
 # Instructions
