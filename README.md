@@ -7,7 +7,7 @@ Location of ISS based on the datetime entered.
 1. Json
 2. urllib
 3. webbrowser
-#Instructions
+# Instructions
 1. Run the program.
 2. Enter datetime (yyyy-mm-dd hh:mm). For example, 2017-02-23 11:30. Then press enter.
 3. A text file will be opened and print out the locations of the ISS.
