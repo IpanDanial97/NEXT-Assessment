@@ -1,11 +1,17 @@
-# International Space Station Tracker
+# International Space Station Tracker using Python
 A system that allows user to key-in datetime (UTC) and the tracker will provide the location (latitude, longitude) of the ISS based on the datetime. The locations of the ISS also include for every 10 minutes for an hour before and an hour after the datetime.
 # Output
 Location of the ISS based on the datetime entered.
 
 ![image](https://user-images.githubusercontent.com/96214490/146301825-b666e6bb-ea13-45a0-97c4-0d17680aee3e.png)
 
-
+# Module Needed
+1. JSON
+2. urllib
+3. datetime
+4. sys
+5. ssl
+6. webbrowser
 # Instructions
 1. Run the program.
 2. Enter datetime (yyyy-mm-dd hh:mm) [UTC]. For example, 2017-02-23 11:30. Then press enter.
