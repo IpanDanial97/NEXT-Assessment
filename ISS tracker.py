@@ -1,247 +1,124 @@
 import json  
 import urllib.request 
-from datetime import timezone
-import datetime
+from datetime import datetime, timezone
 import sys
 import ssl
 import webbrowser
- 
-# user key-in datetime
+import turtle
+import time
+import os 
+
+# User key-in datetime
 my_string = str(input('Enter date(yyyy-mm-dd hh:mm) UTC: '))
-my_date = datetime.datetime.strptime(my_string, "%Y-%m-%d %H:%M")
-temp = datetime.datetime.timestamp(my_date) 
+my_date = datetime.strptime(my_string, "%Y-%m-%d %H:%M")
+temp = my_date.timestamp()                                     
 timestamp = temp + 28800 
 
-# current datetime
-dt = datetime.datetime.now(timezone.utc)
+# Current datetime
+dt = datetime.now(timezone.utc)
 utc_time = dt.replace(tzinfo=timezone.utc)
 timestamp2 = utc_time.timestamp()
+
+# Difference between current datetime and key-in datetime 
 decide = timestamp2 - timestamp
 
-# if condition
+# To decide the amount of location to plot after an hour of the datetime entered
+
+c=0
+och = (timestamp - 3600)
+init_list = [str(och)]
+while c < 12:
+    och += 600
+    epoch = str(och)
+    init_list+= [epoch]
+    c+=1
+
 if decide<0:
-    sys.exit("Date don't match. Datetime entered is in the future")
-
-
+    print("Date cannot be in the future, this program will terminate in 5 seconds")
+    time.sleep(5)
+    sys.exit()
 elif decide <600:
-    och1 = (timestamp - 3600) 
-    och2 = och1 + 600 
-    och3 = och2 + 600
-    och4 = och3 + 600
-    och5 = och4 + 600
-    och6 = och5 + 600
-    rch = och6 + 600
-
-    epoch1= str(och1) 
-    epoch2=str(och2) 
-    epoch3=str(och3) 
-    epoch4=str(och4)
-    epoch5=str(och5)
-    epoch6=str(och6)
-    Search=str(rch)
-   
-  
-
-    url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +"&units=miles"
-    ssl._create_default_https_context = ssl._create_unverified_context
-
+    list = init_list[:-6 or None]
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,list)))
 elif decide <1200:
-    och1 = (timestamp - 3600)
-    och2 = och1 + 600 
-    och3 = och2 + 600
-    och4 = och3 + 600
-    och5 = och4 + 600
-    och6 = och5 + 600
-    rch = och6 + 600
-    och8 = rch + 600
-    
-
-    epoch1= str(och1) 
-    epoch2=str(och2) 
-    epoch3=str(och3) 
-    epoch4=str(och4)
-    epoch5=str(och5)
-    epoch6=str(och6)
-    Search=str(rch)
-    epoch8=str(och8)
-   
-
-    url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +","+ epoch8 +"&units=miles"
-    ssl._create_default_https_context = ssl._create_unverified_context
-    
-
+    list = init_list[:-5 or None]
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,list)))
 elif decide <1800:
-    och1 = (timestamp - 3600)
-    och2 = och1 + 600 
-    och3 = och2 + 600
-    och4 = och3 + 600
-    och5 = och4 + 600
-    och6 = och5 + 600
-    rch = och6 + 600
-    och8 = rch + 600
-    och9 = och8 + 600
-
-    epoch1= str(och1) 
-    epoch2=str(och2) 
-    epoch3=str(och3) 
-    epoch4=str(och4)
-    epoch5=str(och5)
-    epoch6=str(och6)
-    Search=str(rch)
-    epoch8=str(och8)
-    epoch9=str(och9)
-    
-
-    url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +","+ epoch8 + ","+ epoch9 +"&units=miles"
-    ssl._create_default_https_context = ssl._create_unverified_context
-    
-
+    list = init_list[:-4 or None]
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,list)))
 elif decide <2400:
-    och1 = (timestamp - 3600)
-    och2 = och1 + 600 
-    och3 = och2 + 600
-    och4 = och3 + 600
-    och5 = och4 + 600
-    och6 = och5 + 600
-    rch = och6 + 600
-    och8 = rch + 600
-    och9 = och8 + 600
-    och10 = och9 + 600
-   
-
-    epoch1= str(och1) 
-    epoch2=str(och2) 
-    epoch3=str(och3) 
-    epoch4=str(och4)
-    epoch5=str(och5)
-    epoch6=str(och6)
-    Search=str(rch)
-    epoch8=str(och8)
-    epoch9=str(och9)
-    epoch10=str(och10)
-    
-    
-
-    url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +","+ epoch8 + ","+ epoch9 +","+ epoch10 +"&units=miles"
-    ssl._create_default_https_context = ssl._create_unverified_context
-
-
-
+    list = init_list[:-3 or None]
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,list)))
 elif decide <3000:
-    och1 = (timestamp - 3600)
-    och2 = och1 + 600 
-    och3 = och2 + 600
-    och4 = och3 + 600
-    och5 = och4 + 600
-    och6 = och5 + 600
-    rch = och6 + 600
-    och8 = rch + 600
-    och9 = och8 + 600
-    och10 = och9 + 600
-    och11 = och10 + 600
-    
-
-    epoch1= str(och1) 
-    epoch2=str(och2) 
-    epoch3=str(och3) 
-    epoch4=str(och4)
-    epoch5=str(och5)
-    epoch6=str(och6)
-    Search=str(rch)
-    epoch8=str(och8)
-    epoch9=str(och9)
-    epoch10=str(och10)
-    epoch11=str(och11)
-    
-    
-
-    url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +","+ epoch8 + ","+ epoch9 +","+ epoch10 +","+ epoch11 +"&units=miles"
-    ssl._create_default_https_context = ssl._create_unverified_context
-
+    list = init_list[:-2 or None]
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,list)))
 elif decide <3600:
-        och1 = (timestamp - 3600)
-        och2 = och1 + 600 
-        och3 = och2 + 600
-        och4 = och3 + 600
-        och5 = och4 + 600
-        och6 = och5 + 600
-        rch = och6 + 600
-        och8 = rch + 600
-        och9 = och8 + 600
-        och10 = och9 + 600
-        och11 = och10 + 600
-        och12 = och11 + 600
-        
-
-        epoch1= str(och1) 
-        epoch2=str(och2) 
-        epoch3=str(och3) 
-        epoch4=str(och4)
-        epoch5=str(och5)
-        epoch6=str(och6)
-        Search=str(rch)
-        epoch8=str(och8)
-        epoch9=str(och9)
-        epoch10=str(och10)
-        epoch11=str(och11)
-        epoch12=str(och12)
-        
-        
-
-        url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +","+ epoch8 + ","+ epoch9 +","+ epoch10 +","+ epoch11 +","+ epoch12 +"&units=miles"
-        ssl._create_default_https_context = ssl._create_unverified_context
-
+    list = init_list[:-1 or None]
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,list)))
 else:
-    och1 = (timestamp - 3600)
-    och2 = och1 + 600 
-    och3 = och2 + 600
-    och4 = och3 + 600
-    och5 = och4 + 600
-    och6 = och5 + 600
-    rch = och6 + 600
-    och8 = rch + 600
-    och9 = och8 + 600
-    och10 = och9 + 600
-    och11 = och10 + 600
-    och12 = och11 + 600
-    och13 = och12 + 600
+    url = 'https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={dt}&units=miles'.format(dt=','.join(map(str,init_list)))
 
-    epoch1= str(och1) 
-    epoch2=str(och2) 
-    epoch3=str(och3) 
-    epoch4=str(och4)
-    epoch5=str(och5)
-    epoch6=str(och6)
-    Search=str(rch)
-    epoch8=str(och8)
-    epoch9=str(och9)
-    epoch10=str(och10)
-    epoch11=str(och11)
-    epoch12=str(och12)
-    epoch13=str(och13)
-    
+# Additional Information
+ssl._create_default_https_context = ssl._create_unverified_context 
+url2 = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+str(timestamp)+"&units=miles"
+response2 = urllib.request.urlopen(url2) 
+result2 = json.loads(response2.read())
+for i in result2:
+    latz=i["latitude"]
+    lon=i["longitude"]
+    velo=i["velocity"]
 
-    url = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps="+ epoch1 + ","+ epoch2 +","+ epoch3 +","+ epoch4 +","+ epoch5 +","+ epoch6 +","+ Search +","+ epoch8 + ","+ epoch9 +","+ epoch10 +","+ epoch11 +","+ epoch12 +","+ epoch13 +"&units=miles"
-    ssl._create_default_https_context = ssl._create_unverified_context
+url3 = "https://api.openweathermap.org/data/2.5/weather?lat="+str(latz)+"&lon="+str(lon)+"&appid=a4f2e10b344c69d3fb3b15ab9046c869"
+response3 = urllib.request.urlopen(url3) 
+result3 = json.loads(response3.read())
+wea=result3["weather"]
+for a in wea:
+ weather=a["description"]
+city = result3["name"]
 
-
-
+# Print additional information
+file = open("Additional Information.txt", "w")
+file.write("Additional Information \n\n") 
+file.write("Datetime entered: "+ my_string+"\n")
+file.write("Coordinates of ISS based on the datetime entered (lat,long): ("+ str(latz) +","+str(lon)+") \n")
+if(not city):
+    file.write("There's no city where ISS located based on datetime entered \n")
+else:
+ file.write("Name of the City where ISS located based on datetime entered: "+ city +"\n")
+file.write("Current Weather:  "+str(weather)+"\n")
+file.write("Velocity of ISS during the datetime entered: "+str(velo)+" KM/H"+"\n")
+file.close()
+webbrowser.open("Additional Information.txt")
 
 # load the position of the ISS 
-response = urllib.request.urlopen(url)
-result = json.loads(response.read())
-# Print text file
-file = open("iss.txt", "w")
-file.write("ISS Location:\n\n")
-file.write("User entered (UTC) :"+ my_string + "\n\n")
-file.write("Date\t" + "                   " + "Latitude\t" + "        " + "longitude\t"+ "\n")
-initial = temp - 3600 
-for i in result:
-    mytimestamp = datetime.datetime.fromtimestamp( initial )
-    date_time = mytimestamp.strftime( "%Y - %m - %d  %H : %M")  
-    file.write(str(date_time) + "   " + str(i['latitude']) + "   " + str(i['longitude']))
-    file.write("\n\n")
-    initial += 600
+response = urllib.request.urlopen(url)  
+result = json.loads(response.read()) 
 
-file.close()
-webbrowser.open("iss.txt")
+# plotting map
+# Setup the world map in turtle module
+screen = turtle.Screen()
+screen.setup(1280, 720)
+screen.setworldcoordinates(-180, -90, 180, 90)
+  
+# load the world map image
+screen.bgpic("map/map.gif")
+screen.register_shape("map/iss.gif")
+iss = turtle.Turtle()
+iss.shape("map/iss.gif")
+iss.setheading(45)
+iss.penup()
+
+# Plot the coordinates
+for z in result:
+    lat=z["latitude"]
+    long=z["longitude"]
+
+    lat = float(lat)
+    long = float(long)
+    
+    iss.goto(lon, lat)
+  
+    time.sleep(5)
+
+cur_file = "Additional Information.txt"
+os.remove(cur_file)
